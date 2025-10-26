@@ -61,4 +61,4 @@ class MarkovText(object):
             term_sequence.append(next_terms)
             seed_term = next_terms
 
-        return term_sequence
+        return " ".join(term_sequence)
