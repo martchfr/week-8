@@ -52,8 +52,13 @@ class MarkovText(object):
 
         # Iterate through the term_count to build the sequence of terms.
         for i in range(term_count - 1):
-            next_term = np.random.choice(self.term_dict[seed_term])
-            term_sequence.append(next_term)
-            seed_term = next_term
+            next_terms = np.random.choice(self.term_dict[seed_term])
+
+            if not next_terms:
+                seed_term = np.random.choice(list(self.term_dict.keys()))
+                next_terms = self.term_dict[seed_term]
+
+            term_sequence.append(next_terms)
+            seed_term = next_terms
 
         return term_sequence
